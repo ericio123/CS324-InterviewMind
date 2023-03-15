@@ -64,7 +64,7 @@ if st.session_state.role == "Recruiter":
                                 presence_penalty=0.0
                             )
                             output = response['choices'][0]['text']
-                            st.write("Behavioral summary")
+                            st.write("Technical summary")
                             st.info(output)
                             st.markdown("""***""")
 
