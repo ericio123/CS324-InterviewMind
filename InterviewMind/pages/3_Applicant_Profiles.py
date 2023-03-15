@@ -34,7 +34,7 @@ if st.session_state.role == "Recruiter":
                                 text += f"Question: {question}. Answer: {answer}. "
                             response = openai.Completion.create(
                                 model="text-davinci-003",
-                                prompt=f"Give a summary of the personality of this job applicant based on their answers to the following behavioral interview questions: {text}",
+                                prompt=f"Given the following five behavioral questions and their answers from a candidate, please provide an overall behavioral profile of the candidate. Your response should be based solely on the information provided in the candidate's answers and should not include any made-up information or assumptions: {text}",
                                 temperature=0.5,
                                 max_tokens=150,
                                 top_p=1.0,
@@ -54,5 +54,20 @@ if st.session_state.role == "Recruiter":
                                 st.write("Technical Answer " + str(j+1))
                                 answer = st.session_state.tc_interviews[key][j]["Answer"]
                                 st.info(answer)
+                            response = openai.Completion.create(
+                                model="text-davinci-003",
+                                prompt=f"Given the following short technical questions and their answers from a candidate, please evaluate the candidate's technical capabilities and provide a rating out of 5 based on the accuracy of their answers for the respective question asked. What can you infer about the candidate's technical capabilities based on their overall rating and their strengths and areas for improvement (in short)? Your response should be based solely on the information provided in the candidate's answers and should not include any made-up information or assumptions.: {st.session_state.tc_interviews[applicant.strip()]}",
+                                temperature=0.5,
+                                max_tokens=150,
+                                top_p=1.0,
+                                frequency_penalty=0.0,
+                                presence_penalty=0.0
+                            )
+                            output = response['choices'][0]['text']
+                            st.write("Behavioral summary")
+                            st.info(output)
+                            st.markdown("""***""")
+
+
 else:
     st.write("Sorry, applicants don't have access to this page. Please change your role on the home page if you want to use this feature.")

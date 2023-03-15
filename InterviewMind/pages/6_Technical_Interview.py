@@ -4,7 +4,7 @@ import openai
 openai.api_key = "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"
 
 def generate_questions(title,desc=None):
-    prompt = f"Generate 5 short technical interview questions to assess candidate on their fundamentals for a {title} position. Only write questions in output separated by a newline."
+    prompt = f"Generate 5 short technical interview questions (one line answers) to assess candidate on their fundamentals for a {title} position. Only write questions in output separated by a newline."
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
