@@ -6,7 +6,7 @@ st.set_page_config(page_title="InterviewMind")
 @st.cache_data
 def ini():
     st.session_state.role = "Applicant"
-    st.session_state.pdf = 0
+    st.session_state.resume_job = []
     st.session_state.name = []
     st.session_state.education = []
     st.session_state.work = []
