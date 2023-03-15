@@ -75,5 +75,6 @@ if st.session_state.role == "Applicant":
             )
             output = response['choices'][0]['text']
             st.session_state.contact.append(output)
+            st.info("Application submitted")
 else:
     st.write("Sorry, recruiters don't have access to this page. Please change your role on the home page if you want to use this feature.")

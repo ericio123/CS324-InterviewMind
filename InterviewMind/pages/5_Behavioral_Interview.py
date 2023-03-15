@@ -22,7 +22,6 @@ def app():
     role = st.selectbox("Select role:", st.session_state.job_title)
     st.write(f"You selected: {role}")
     submitted=None
-    count=0
 
     name = st.text_input("Write your name below and press Enter to start the test.")
 

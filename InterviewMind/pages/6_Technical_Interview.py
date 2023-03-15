@@ -22,7 +22,6 @@ def app():
     role = st.selectbox("Select role:", st.session_state.job_title)
     st.write(f"You selected: {role}")
     submitted=None
-    count=0
 
     name = st.text_input("Write your name below and press Enter to start the test.")
     
@@ -30,7 +29,7 @@ def app():
     # Do nothing until Enter is pressed
         pass
     elif name not in st.session_state.name:
-        st.info("You don't have access to interview for the selected role.")
+        st.info("You don't have access to the interview for the selected role.")
     else:
 
         # if st.button("Start Test"):
