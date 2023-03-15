@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 
 if st.session_state.role == "Recruiter":
     job = st.selectbox("Select which job to show applications for",(st.session_state.job_title))
@@ -19,6 +20,30 @@ if st.session_state.role == "Recruiter":
                     st.info(st.session_state.skills[i])
                     st.write("Contact Information")
                     st.info(st.session_state.contact[i])
+                    st.info(st.session_state.bh_interviews.keys())
+                    text = ""
+                    for key in st.session_state.bh_interviews.keys():
+                        if key.strip() == st.session_state.name[i].strip():
+                            for i in range(len(st.session_state.bh_interviews[key])):
+                                st.write("Behavioral Question " + str(i+1))
+                                question = st.session_state.bh_interviews[key][i]["Question"]
+                                st.info(question)
+                                st.write("Behavioral Answer " + str(i+1))
+                                answer = st.session_state.bh_interviews[key][i]["Question"]
+                                st.info(answer)
+                                text += f"Question: {question}. Answer: {answer}. "
+                    response = openai.Completion.create(
+                        model="text-davinci-003",
+                        prompt=f"Give a summary of the personality of this job applicant based on their answers to the following behavioral interview questions: {text}",
+                        temperature=0.5,
+                        max_tokens=150,
+                        top_p=1.0,
+                        frequency_penalty=0.0,
+                        presence_penalty=0.0
+                    )
+                    output = response['choices'][0]['text']
+                    st.write("Behavioral summary")
+                    st.info(output)
                     st.markdown("""***""")
 else:
     st.write("Sorry, applicants don't have access to this page. Please change your role on the home page if you want to use this feature.")
