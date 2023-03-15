@@ -67,4 +67,7 @@ def app():
 
 # Run Streamlit app
 if __name__ == "__main__":
-    app()
+    if st.session_state.role == "Applicant":
+        app()
+    else:
+        st.write("Sorry, recruiters don't have access to this page. Please change your role on the home page if you want to use this feature.")

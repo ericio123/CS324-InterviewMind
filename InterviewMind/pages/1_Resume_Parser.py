@@ -2,6 +2,8 @@ import streamlit as st
 import openai
 import pdfplumber
 
+openai.api_key = "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"
+
 def extract_text(file):
     text = []
     with pdfplumber.open(file) as pdf:
@@ -18,9 +20,7 @@ if st.session_state.role == "Applicant":
             text = extract_text(uploaded_file)
             text = ''.join(text)
             st.info(text)
-            st.session_state.pdf = 1
             st.session_state.resume_job.append(job)
-            openai.api_key = "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"
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt="Answer with the name of this person based on their resume: " + text,

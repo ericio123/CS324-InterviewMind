@@ -23,7 +23,6 @@ if st.session_state.role == "Recruiter":
             text = extract_text(uploaded_file)
             text = ''.join(text)
             st.info(text)
-            st.session_state.pdf = 1
             openai.api_key = "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"
             
             response = openai.Completion.create(
@@ -51,7 +50,7 @@ if st.session_state.role == "Recruiter":
                 model="text-davinci-003",
                 prompt= f"Give a detailed job description with sections including minimum qualifications and preferred qualities for the job posting with the following job title: {job_title} and with the following job specifics: {job_spec}. Answer keeping in mind the job title and job specifics, if given.",
                 temperature=0.5,
-                max_tokens=250,
+                max_tokens=500,
                 top_p=1.0,
                 frequency_penalty=0.0,
                 presence_penalty=0.0
