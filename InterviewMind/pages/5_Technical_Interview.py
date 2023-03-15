@@ -53,7 +53,7 @@ def app():
             submitted = st.form_submit_button("Submit Test")
 
             if submitted:
-                st.session_state.bh_interviews[name]=answers
+                st.session_state.tc_interviews[name]=answers
                 st.write("Answers submitted successfully.")
                 st.write(answers)
 

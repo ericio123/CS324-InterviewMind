@@ -20,7 +20,7 @@ if st.session_state.role == "Recruiter":
                     st.info(st.session_state.skills[i])
                     st.write("Contact Information")
                     st.info(st.session_state.contact[i])
-                    st.info(st.session_state.bh_interviews.keys())
+                    st.markdown("""***""")
                     text = ""
                     for key in st.session_state.bh_interviews.keys():
                         if key.strip() == st.session_state.name[i].strip():
@@ -45,5 +45,14 @@ if st.session_state.role == "Recruiter":
                     st.write("Behavioral summary")
                     st.info(output)
                     st.markdown("""***""")
+                    for key in st.session_state.tc_interviews.keys():
+                        if key.strip() == st.session_state.name[i].strip():
+                            for i in range(len(st.session_state.tc_interviews[key])):
+                                st.write("Technical Question " + str(i+1))
+                                question = st.session_state.tc_interviews[key][i]["Question"]
+                                st.info(question)
+                                st.write("Technical Answer " + str(i+1))
+                                answer = st.session_state.tc_interviews[key][i]["Question"]
+                                st.info(answer)
 else:
     st.write("Sorry, applicants don't have access to this page. Please change your role on the home page if you want to use this feature.")
