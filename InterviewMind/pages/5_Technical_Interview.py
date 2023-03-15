@@ -25,7 +25,7 @@ def app():
     count=0
 
     name = st.text_input("Write your name below and press Enter to start the test.")
-
+    
     if name == "":
     # Do nothing until Enter is pressed
         pass
@@ -41,7 +41,7 @@ def app():
             st.write("Please answer the following questions:")
             question_index = 0
             answers = {}
-
+            
             # Loop through interview questions
             for question in questions:
                 st.write(f"Q{question}")
@@ -49,7 +49,7 @@ def app():
                 # if answer:
                 answers[question_index] = {"Question": question, "Answer": answer}
                 question_index += 1
-
+            
             submitted = st.form_submit_button("Submit Test")
 
             if submitted:

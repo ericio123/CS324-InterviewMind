@@ -36,7 +36,7 @@ def app():
         # if st.button("Start Test"):
         with st.form("test"):
             # Generate interview questions using OpenAI API
-            #print(type(st.session_state.bh_interviews))
+            # print(type(st.session_state.bh_interviews))
             questions = generate_questions(role)
             st.write("Please answer the following questions:")
             question_index = 0
