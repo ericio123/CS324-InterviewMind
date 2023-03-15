@@ -1,6 +1,5 @@
 import streamlit as st
 
-st.info(st.session_state.role)
 if st.session_state.role == "Recruiter":
     st.info("interview")
 else:

@@ -29,7 +29,7 @@ if st.session_state.role == "Applicant":
         )
         output = response['choices'][0]['text']
         st.info(output)
-        st.session_state.name = output
+        st.session_state.name.append(output)
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt="Answer with the college, major, and GPA of this person based on their resume: " + text,
@@ -41,7 +41,7 @@ if st.session_state.role == "Applicant":
         )
         output = response['choices'][0]['text']
         st.info(output)
-        st.session_state.education = output
+        st.session_state.education.append(output)
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt="Answer with the work history of this person based on their resume: " + text,
@@ -53,7 +53,7 @@ if st.session_state.role == "Applicant":
         )
         output = response['choices'][0]['text']
         st.info(output)
-        st.session_state.work = output
+        st.session_state.work.append(output)
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt="Answer with the technical skills of this person based on their resume: " + text,
@@ -65,7 +65,7 @@ if st.session_state.role == "Applicant":
         )
         output = response['choices'][0]['text']
         st.info(output)
-        st.session_state.skills = output
+        st.session_state.skills.append(output)
         response = openai.Completion.create(
             model="text-davinci-003",
             prompt="Answer with the contact information of this person based on their resume: " + text,
@@ -77,6 +77,6 @@ if st.session_state.role == "Applicant":
         )
         output = response['choices'][0]['text']
         st.info(output)
-        st.session_state.contact = output
+        st.session_state.contact.append(output)
 else:
     st.write("Sorry, recruiters don't have access to this page. Please change your role on the home page if you want to use this feature.")
