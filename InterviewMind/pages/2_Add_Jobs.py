@@ -38,6 +38,7 @@ if st.session_state.role == "Recruiter":
 
             st.session_state.job_title.append(output)
             st.session_state.job_descriptions.append(text)
+            st.info("Job Added")
 
     else:
         job_title = st.text_input("Job Title")
@@ -60,5 +61,6 @@ if st.session_state.role == "Recruiter":
 
             st.session_state.job_title.append(job_title)
             st.session_state.job_descriptions.append(output)
+            st.info("Job Added")
 else:
     st.write("Sorry, applicants don't have access to this page. Please change your role on the home page if you want to use this feature.")

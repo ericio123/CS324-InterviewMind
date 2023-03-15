@@ -4,7 +4,7 @@ import openai
 openai.api_key = "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"
 
 def generate_questions(title,desc=None):
-    prompt = f"Generate 5 behavioral interview questions for a {title} position. Only write questions in output separated by a newline."
+    prompt = f"Generate 5 short technical interview questions to assess candidate on their fundamentals for a {title} position. Only write questions in output separated by a newline."
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
@@ -18,14 +18,14 @@ def generate_questions(title,desc=None):
 
 def app():
     # Set up Streamlit app
-    st.title("Behavioral Interview Test")
+    st.title("Technical Interview Test")
     role = st.selectbox("Select role:", st.session_state.job_title)
     st.write(f"You selected: {role}")
     submitted=None
     count=0
 
     name = st.text_input("Write your name below and press Enter to start the test.")
-
+    
     if name == "":
     # Do nothing until Enter is pressed
         pass
@@ -69,7 +69,4 @@ def app():
 
 # Run Streamlit app
 if __name__ == "__main__":
-    if st.session_state.role == "Applicant":
-        app()
-    else:
-        st.write("Sorry, recruiters don't have access to this page. Please change your role on the home page if you want to use this feature.")
+    app()

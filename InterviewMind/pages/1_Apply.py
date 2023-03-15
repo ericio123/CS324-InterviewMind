@@ -23,7 +23,7 @@ if st.session_state.role == "Applicant":
             st.session_state.resume_job.append(job)
             response = openai.Completion.create(
                 model="text-davinci-003",
-                prompt="Answer with the name of this person based on their resume: " + text,
+                prompt=f"Ouput the the name of the person based on their resume in only two words (first and last name): {text}",
                 temperature=0.5,
                 max_tokens=150,
                 top_p=1.0,
@@ -32,7 +32,7 @@ if st.session_state.role == "Applicant":
             )
             output = response['choices'][0]['text']
             st.info(output)
-            st.session_state.name.append(output)
+            st.session_state.name.append(output.strip())
             response = openai.Completion.create(
                 model="text-davinci-003",
                 prompt="Answer with the college, major, and GPA of this person based on their resume: " + text,
