@@ -14,6 +14,7 @@ def ini():
     st.session_state.contact = []
     st.session_state.job_title = []
     st.session_state.job_descriptions = []
+    st.session_state.bh_interviews = {}
 
 ini()
 
