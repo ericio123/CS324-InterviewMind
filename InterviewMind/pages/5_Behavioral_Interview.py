@@ -3,17 +3,19 @@ import openai
 # st.session_state.bh_interviews={}
 openai.api_key = "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"
 
-def generate_questions(title,desc=None):
-    prompt = f"Generate 5 behavioral interview questions for a {title} position. Only write questions in output separated by a newline."
-    completions = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=100,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-    )
-    message = completions.choices[0].text.strip()
+def generate_questions(title, name, desc=None):
+    for i in range(len(st.session_state.name)):
+        if st.session_state.name[i] == name:
+            prompt = f"Generate 5 behavioral interview questions for a {title} position. Use the work history of the candidate to help generate the question. Work history: {st.session_state.work[i]}. Only write questions in output separated by a newline."
+            completions = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=prompt,
+                max_tokens=100,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0
+            )
+            message = completions.choices[0].text.strip()
     return message.split("\n")
 
 def app():
@@ -36,7 +38,7 @@ def app():
         with st.form("test"):
             # Generate interview questions using OpenAI API
             # print(type(st.session_state.bh_interviews))
-            questions = generate_questions(role)
+            questions = generate_questions(role, name)
             st.write("Please answer the following questions:")
             question_index = 0
             answers = {}

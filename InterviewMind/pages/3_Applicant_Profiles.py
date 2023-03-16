@@ -16,6 +16,8 @@ if st.session_state.role == "Recruiter":
                     st.info(st.session_state.name[i])
                     st.write("Education")
                     st.info(st.session_state.education[i])
+                    st.write("Work History")
+                    st.info(st.session_state.work[i])
                     st.write("Skills")
                     st.info(st.session_state.skills[i])
                     st.write("Contact Information")

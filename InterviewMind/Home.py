@@ -19,7 +19,7 @@ def ini():
 ini()
 
 st.title("InterviewMind")
-st.write("InterviewMind is a tool built on GPT-3 to automate the interview workflow for both applicants and recruiters. For more information check out our blog post at URL. Use the sidebar on the left to select a role and gain access to the relevant pages and features.")
+st.write("InterviewMind is a tool built on GPT-3 to automate the interview workflow for both applicants and recruiters. Use the sidebar on the left to select a role and gain access to the relevant pages and features.")
 
 if st.session_state.role == "Applicant":
     index = 0

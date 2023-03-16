@@ -13,7 +13,7 @@ def extract_text(file):
     return text
 
 if st.session_state.role == "Applicant":
-    task = st.radio("Select how you want to add a job posting",("Create a resume","Improve my resume"))
+    task = st.radio("Select whether you want to create or improve a resume",("Create a resume","Improve my resume"))
     if task=="Create a resume":
         name = st.text_input("What's your name?")
         education = st.text_input("What's your education background?")
